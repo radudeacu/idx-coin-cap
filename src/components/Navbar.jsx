@@ -3,13 +3,16 @@ import React from 'react'
 // import { BsCcCircle } from "react-icons/bs"
 import { BsCcCircleFill } from "react-icons/bs";
 import './Navbar.css'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div className="navbar">
-        <BsCcCircleFill className='icon' />
-        <h1> Coin <span className='blue'>Cap</span></h1>
-    </div>
+    <Link to='/'>
+      <div className="navbar">
+          <BsCcCircleFill className='icon' />
+          <h1> Coin <span className='blue'>Cap</span></h1>
+      </div>
+    </Link>
   )
 }
 
