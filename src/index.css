@@ -15,8 +15,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* background-color: #030718;
-  color: #f4f4f4; */
+  /* background-image: url(./assets/backgroundtest.avif); */
+  /* background-color: #030718; */
+  /* color: #f4f4f4; */
+  
 }
 
 a {
@@ -27,6 +29,7 @@ a {
 
 a:link, a:visited {
   text-decoration: none;
+  color: blue;
 }
 h1 {
   text-align: center;
