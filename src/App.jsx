@@ -7,6 +7,7 @@ import { Routes, Route} from 'react-router-dom';
 import Coin from './pages/Coin';
 import Exchanges from './pages/Exchanges';
 
+
 function App() {
   const [coins, setCoins] = useState([])
 

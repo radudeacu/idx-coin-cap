@@ -12,12 +12,18 @@ const Exchanges = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="exchanges-container">
+      <div className="heading">
+                <p className="exchange-name">Exchange</p>
+                <p>Volume</p>
+                <p>Country of Origin</p>
+            </div>
+
       {exchanges.map(exchange => (
         <div className="exchange-row" key={exchange.id}>
           <h3>{exchange.name}</h3>
-          <p>Volume: ${exchange.trade_volume_24h_btc.toLocaleString()}</p>
-          <p>Country: {exchange.country}</p>
+          <p>{exchange.trade_volume_24h_btc.toLocaleString()}</p>
+          <p>{exchange.country}</p>
         </div>
       ))}
     </div>

@@ -1,17 +1,70 @@
-.navbar {
+.toolbar {
+    /* background-color: rgba(255, 255, 255, 0.329) !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1); */
+    background-color:rgba(255, 255, 255, 0.2);
+}
+
+
+.navbar-brand {
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #385fe2;
+    text-decoration: none;
+    color: inherit;
 }
 
 .icon {
     font-size: 2rem;
     color: #385fe2;
-    /* margin-right: 10px; */
-    margin-top: 4px;
+    margin-right: 10px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
 }
 
 .blue {
-    color: #385fe2;
+    color: #556392;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.desktop-menu {
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+    
+}
+
+.nav-link {
+    margin-left: 20px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.25rem;
+    /* font-weight: bold; */
+}
+
+.mobile-menu {
+    display: none;
+    margin-top: 0.285em !important;
+}
+
+.drawer-paper {
+    background: rgba(255, 255, 255, 0.4) !important; 
+    backdrop-filter: blur(10px) !important; 
+    /* color: white;  */
+}
+
+
+@media (max-width: 600px) {
+    .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
 }
