@@ -24,6 +24,9 @@ const Navbar = () => {
 
   const drawerList = (
     <List>
+      <ListItem button component={Link} to="/" onClick={toggleDrawer(false)}>
+        <ListItemText primary="Home" />
+      </ListItem>
       <ListItem button component={Link} to="/exchanges" onClick={toggleDrawer(false)}>
         <ListItemText primary="Exchanges" />
       </ListItem>
