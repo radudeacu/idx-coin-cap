@@ -7,12 +7,19 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <Link to='/'>
-      <div className="navbar">
+    <>
+      <Link to='/'>
+        <div className="navbar">
           <BsCcCircleFill className='icon' />
           <h1> Coin <span className='blue'>Cap</span></h1>
-      </div>
-    </Link>
+        </div>
+      </Link>
+      <Link to='/exchanges'>
+          <div className="navbar">
+            <h1> Exchanges</h1>
+          </div>
+      </Link>
+    </>
   )
 }
 

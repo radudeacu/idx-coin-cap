@@ -5,6 +5,7 @@ import Coinitem from './components/Coinitem';
 import Navbar from './components/Navbar';
 import { Routes, Route} from 'react-router-dom';
 import Coin from './pages/Coin';
+import Exchanges from './pages/Exchanges';
 
 function App() {
   const [coins, setCoins] = useState([])
@@ -28,8 +29,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Coins coins={coins}/>} />
         <Route path='/coin' element={<Coin />}>
-          <Route path=':coinId' element={<Coin />} />
+        <Route path=':coinId' element={<Coin />} />
         </Route>
+        <Route path='/exchanges' element={<Exchanges />} />
       </Routes>
     </>
   )
