@@ -1,0 +1,27 @@
+.contact-container {
+    margin-top: 2rem;
+}
+
+.contact-form {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.send-button {
+    margin-top: 1rem;
+}
+
+.contact-info {
+    margin-top: 3rem;
+}
+
+.contact-icon {
+    vertical-align: middle;
+    margin-right: 8px;
+    color: #385fe2;
+}
+
+.contact-info .MuiTypography-body1 {
+    display: inline-flex;
+    align-items: center;
+}
