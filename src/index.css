@@ -16,20 +16,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-image: url(./assets/backgroundtest2.jpeg);
-  /* background-color: #030718; */
-  /* color: #f4f4f4; */
+
   
 }
 
 a {
-  /* color: #f4f4f4; */
   text-decoration: none;
   
 }
 
 a:link, a:visited {
   text-decoration: none;
-  color: blue;
+  /* color: blue; */
 }
 h1 {
   text-align: center;

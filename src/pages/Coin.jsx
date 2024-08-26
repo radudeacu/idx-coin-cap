@@ -10,8 +10,8 @@ const Coin = () => {
   const params = useParams()
   const [coin, setCoin] = useState({})
   const [historicalData, setHistoricalData] = useState([])
-  const [loading, setLoading] = useState(true) // Loading state
-  const [error, setError] = useState(null) // Error state
+  const [loading, setLoading] = useState(true) 
+  const [error, setError] = useState(null) 
 
   const url = `https://api.coingecko.com/api/v3/coins/${params.coinId}`
   const historicalUrl = `https://api.coingecko.com/api/v3/coins/${params.coinId}/market_chart?vs_currency=usd&days=30`
@@ -25,7 +25,7 @@ const Coin = () => {
         ])
         setCoin(coinResponse.data)
         setHistoricalData(historicalResponse.data.prices)
-        setLoading(false) // Set loading to false after data is fetched
+        setLoading(false) 
       } catch (error) {
         console.error('Error fetching data:', error)
         setError('Failed to load data')
@@ -108,7 +108,7 @@ const Coin = () => {
         </div>
       </div>
 
-      <div className='chart-content'> {/* Apply consistent styling */}
+      <div className='chart-content'> 
         <h3>{coin.name} Price Chart (Last 30 Days)</h3>
         <Line data={chartData} />
       </div>
