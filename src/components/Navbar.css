@@ -1,7 +1,4 @@
 .toolbar {
-    /* background-color: rgba(255, 255, 255, 0.329) !important;
-    backdrop-filter: blur(15px) !important;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1); */
     background-color:rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(15px);
 }
@@ -11,12 +8,12 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: inherit;
+    color: black;
 }
 
 .icon {
     font-size: 2rem;
-    color: #385fe2;
+    color: black;
     margin-right: 10px;
 }
 
@@ -26,7 +23,7 @@
 }
 
 .blue {
-    color: #556392;
+    color: black;
 }
 
 .spacer {

@@ -13,7 +13,7 @@ const Exchanges = () => {
 
   return (
     <div className="exchanges-container">
-      <div className="heading">
+      <div className="eheading">
                 <p className="exchange-name">Exchange</p>
                 <p>Volume</p>
                 <p>Country of Origin</p>
@@ -21,7 +21,10 @@ const Exchanges = () => {
 
       {exchanges.map(exchange => (
         <div className="exchange-row" key={exchange.id}>
-          <h3>{exchange.name}</h3>
+          <div className='img-symbol'>
+            <img src={exchange.image} alt={exchange.name} />
+            <h3>{exchange.name}</h3>
+          </div>
           <p>{exchange.trade_volume_24h_btc.toLocaleString()}</p>
           <p>{exchange.country}</p>
         </div>
