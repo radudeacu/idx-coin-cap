@@ -2,23 +2,63 @@ import { useParams } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import DOMPurify from 'dompurify'
 import axios from 'axios'
+import { Line } from 'react-chartjs-2'
+import 'chart.js/auto'
 import './Coin.css'
 
 const Coin = () => {
-
   const params = useParams()
   const [coin, setCoin] = useState({})
+  const [historicalData, setHistoricalData] = useState([])
+  const [loading, setLoading] = useState(true) // Loading state
+  const [error, setError] = useState(null) // Error state
 
   const url = `https://api.coingecko.com/api/v3/coins/${params.coinId}`
+  const historicalUrl = `https://api.coingecko.com/api/v3/coins/${params.coinId}/market_chart?vs_currency=usd&days=30`
 
   useEffect(() => {
-    axios.get(url).then((response) => {
-      setCoin(response.data)
-      console.log(response.data)
-    }).catch(error => {
-      console.log(error)
-    })
-  }, [])
+    const fetchCoinData = async () => {
+      try {
+        const [coinResponse, historicalResponse] = await Promise.all([
+          axios.get(url),
+          axios.get(historicalUrl)
+        ])
+        setCoin(coinResponse.data)
+        setHistoricalData(historicalResponse.data.prices)
+        setLoading(false) // Set loading to false after data is fetched
+      } catch (error) {
+        console.error('Error fetching data:', error)
+        setError('Failed to load data')
+        setLoading(false)
+      }
+    }
+
+    fetchCoinData()
+  }, [url, historicalUrl])
+
+  const chartData = {
+    labels: historicalData.map((data) => {
+      const date = new Date(data[0])
+      return `${date.getMonth() + 1}/${date.getDate()}`
+    }),
+    datasets: [
+      {
+        label: `${coin.name} Price (USD)`,
+        data: historicalData.map((data) => data[1]),
+        fill: false,
+        borderColor: 'rgba(75,192,192,1)',
+        tension: 0.1,
+      },
+    ],
+  }
+
+  if (loading) {
+    return <div className="content">Loading...</div>
+  }
+
+  if (error) {
+    return <div className="content">{error}</div>
+  }
 
   return (
     <div>
@@ -58,16 +98,21 @@ const Coin = () => {
               <tr>
                 <td>{coin.market_data?.price_change_percentage_1h_in_currency ? <p>{coin.market_data.price_change_percentage_1h_in_currency.usd.toFixed(1)}%</p> : null}</td>
                 <td>{coin.market_data?.price_change_percentage_24h_in_currency ? <p>{coin.market_data.price_change_percentage_24h_in_currency.usd.toFixed(1)}%</p> : null}</td>
-                <td>{coin.market_data?.price_change_percentage_24h_in_currency ? <p>{coin.market_data.price_change_percentage_7d_in_currency.usd.toFixed(1)}%</p> : null}</td>
-                <td>{coin.market_data?.price_change_percentage_24h_in_currency ? <p>{coin.market_data.price_change_percentage_14d_in_currency.usd.toFixed(1)}%</p> : null}</td>
-                <td>{coin.market_data?.price_change_percentage_24h_in_currency ? <p>{coin.market_data.price_change_percentage_30d_in_currency.usd.toFixed(1)}%</p> : null}</td>
-                <td>{coin.market_data?.price_change_percentage_24h_in_currency ? <p>{coin.market_data.price_change_percentage_1y_in_currency.usd.toFixed(1)}%</p> : null}</td>
-
+                <td>{coin.market_data?.price_change_percentage_7d_in_currency ? <p>{coin.market_data.price_change_percentage_7d_in_currency.usd.toFixed(1)}%</p> : null}</td>
+                <td>{coin.market_data?.price_change_percentage_14d_in_currency ? <p>{coin.market_data.price_change_percentage_14d_in_currency.usd.toFixed(1)}%</p> : null}</td>
+                <td>{coin.market_data?.price_change_percentage_30d_in_currency ? <p>{coin.market_data.price_change_percentage_30d_in_currency.usd.toFixed(1)}%</p> : null}</td>
+                <td>{coin.market_data?.price_change_percentage_1y_in_currency ? <p>{coin.market_data.price_change_percentage_1y_in_currency.usd.toFixed(1)}%</p> : null}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+
+      <div className='chart-content'> {/* Apply consistent styling */}
+        <h3>{coin.name} Price Chart (Last 30 Days)</h3>
+        <Line data={chartData} />
+      </div>
+
       <div className='content'>
         <div className='stats'>
           <div className='left'>
@@ -79,7 +124,6 @@ const Coin = () => {
               <h4>24 Hour High</h4>
               {coin.market_data?.high_24h ? <p>${coin.market_data.high_24h.usd.toLocaleString()}</p> : null}
             </div>
-
           </div>
           <div className='right'>
             <div className='row'>
@@ -90,19 +134,16 @@ const Coin = () => {
               <h4>Circulating Supply</h4>
               {coin.market_data ? <p>{coin.market_data.circulating_supply}</p> : null}
             </div>
-
           </div>
         </div>
       </div>
+
       <div className='content'>
         <div className='about'>
           <h3>About</h3>
           <p dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(coin.description ? coin.description.en : ''),
-          }}>
-
-          </p>
-
+          }}></p>
         </div>
       </div>
     </div>
