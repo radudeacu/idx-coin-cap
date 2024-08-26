@@ -40,6 +40,9 @@ const News = () => {
         {news.map((item, index) => (
           <div key={index} className="news-item">
             <a href={item.url} target="_blank" rel="noopener noreferrer">
+            <div className="news-image">
+                <img src={item.thumb_2x} alt={item.title} />
+              </div>
               <h2>{item.title}</h2>
             </a>
             <p>{item.description}</p>
