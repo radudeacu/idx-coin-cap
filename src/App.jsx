@@ -7,6 +7,7 @@ import { Routes, Route} from 'react-router-dom';
 import Coin from './pages/Coin';
 import Exchanges from './pages/Exchanges';
 import Contact from './pages/Contact';
+import News from './pages/News';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path=':coinId' element={<Coin />} />
         </Route>
         <Route path='/exchanges' element={<Exchanges />} />
+        <Route path='/news' element={<News />} />
         <Route path='/contact' element={<Contact />} />
       </Routes>
     </>

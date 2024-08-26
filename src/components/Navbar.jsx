@@ -30,6 +30,9 @@ const Navbar = () => {
       <ListItem button component={Link} to="/exchanges" onClick={toggleDrawer(false)}>
         <ListItemText primary="Exchanges" />
       </ListItem>
+      <ListItem button component={Link} to="/news" onClick={toggleDrawer(false)}>
+        <ListItemText primary="News" />
+      </ListItem>
       <ListItem button component={Link} to="/contact" onClick={toggleDrawer(false)}>
         <ListItemText primary="Contact" />
       </ListItem>
@@ -49,6 +52,9 @@ const Navbar = () => {
         <div className="desktop-menu">
           <Link to='/exchanges' className="nav-link">
             Exchanges
+          </Link>
+          <Link to='/news' className="nav-link">
+            News
           </Link>
           <Link to='/contact' className="nav-link">
             Contact
